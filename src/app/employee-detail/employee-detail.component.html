@@ -1,0 +1,59 @@
+<app-header />
+
+@if(employee) {
+  <section class="container">
+    <div class="card user-detail">
+      <div class="card-body">
+        <h4 class="card-title">{{ employee.firstName }} {{ employee.lastName }}</h4>
+        <div class="row">
+          <label class="col-md-4 col-sm-12 form-label">Id</label>
+          <label class="col-md-8 col-sm-12 form-label user-value">{{ employee.id }}</label>
+        </div>
+        <div class="row">
+          <label class="col-md-4 col-sm-12 form-label">Username</label>
+          <label class="col-md-8 col-sm-12 form-label user-value">{{ employee.username }}</label>
+        </div>
+        <div class="row">
+          <label class="col-md-4 col-sm-12 form-label">Email</label>
+          <label class="col-md-8 col-sm-12 form-label user-value">{{ employee.email }}</label>
+        </div>
+        <div class="row">
+          <label class="col-md-4 col-sm-12 form-label">Birthdate</label>
+          <label class="col-md-8 col-sm-12 form-label user-value">{{ employee.birthDate | date: 'dd MMMM yyyy' }}</label>
+        </div>
+        <div class="row">
+          <label class="col-md-4 col-sm-12 form-label">Basic Salary</label>
+          <label class="col-md-8 col-sm-12 form-label user-value">{{ employee.basicSalary | currency: 'Rp. ' }}</label>
+        </div>
+        <div class="row">
+          <label class="col-md-4 col-sm-12 form-label">Group</label>
+          <label class="col-md-8 col-sm-12 form-label user-value">{{ employee.group }}</label>
+        </div>
+        <div class="row">
+          <label class="col-md-4 col-sm-12 form-label">Status</label>
+          <label class="col-md-8 col-sm-12 form-label user-value">{{ employee.status }}</label>
+        </div>
+        <div class="row margin-top-20">
+          <div class="col-12 d-grid gap-2">
+            <button type="button" routerLink="/list" class="btn btn-primary">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+} 
+
+@if(!employee){
+  <section class="container">
+    <div class="card user-detail">
+      <div class="card-body">
+        <h5 class="card-title">Data employee not found</h5>
+        <div class="row margin-top-20">
+          <div class="col-12 d-grid gap-2">
+            <button type="button" routerLink="/list" class="btn btn-primary">Back to List</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+}

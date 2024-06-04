@@ -1,0 +1,20 @@
+.add-form {
+    display: block;
+    margin: 20px auto;
+    width: 40%;
+}
+
+@media (max-width: 768px) {
+    .add-form {
+        width: 90%;
+    }
+}
+
+.add-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+mat-form-field {
+    width: 100%;
+}

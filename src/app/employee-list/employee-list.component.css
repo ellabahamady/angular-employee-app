@@ -1,0 +1,23 @@
+table {
+    width: 100%;
+}
+
+.mat-mdc-form-field {
+    margin-top: 20px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.btn-add {
+    margin-top: 20px;
+    float: right;
+}
+
+.btn-custom {
+    width: 70px;
+    margin: 5px;
+}
+
+.alert-custom {
+    margin-top: 20px;
+}

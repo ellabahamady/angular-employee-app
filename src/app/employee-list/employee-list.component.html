@@ -1,0 +1,69 @@
+<app-header />
+
+<section class="container">
+  <!-- Alert message show when button edit / delete clicked -->
+  <div class="alert alert-danger alert-dismissible alert-custom" role="alert" *ngIf="isDelete">
+    <div>Data deleted successfully</div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <div class="alert alert-warning alert-dismissible alert-custom" role="alert" *ngIf="isEdit">
+    <div>Data updated successfully</div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <!-- Button add employee redirect to Add Employee Page -->
+  <button type="button" routerLink="/add" class="btn btn-primary btn-add">Add Employee</button>
+
+  <!-- Table list employee -->
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applySearch($event)" placeholder="Ex. Budi" #input>
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+      </ng-container>
+      <!-- Username Column -->
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Username </th>
+        <td mat-cell *matCellDef="let row"> {{row.username}} </td>
+      </ng-container>
+      <!-- First Name Column -->
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.firstName}} </td>
+      </ng-container>
+      <!-- Last Name Column -->
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.lastName}} </td>
+      </ng-container>
+      <!-- Group Column -->
+      <ng-container matColumnDef="group">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Group </th>
+        <td mat-cell *matCellDef="let row"> {{row.group}} </td>
+      </ng-container>
+      <!-- Action Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let row">
+          <button type="button" [routerLink]="['/detail', row.id]" class="btn btn-success btn-sm btn-custom">Detail</button>
+          <button type="button" (click)="edit()" class="btn btn-warning btn-sm btn-custom">Edit</button>
+          <button type="button" (click)="delete()" class="btn btn-danger btn-sm btn-custom">Delete</button>
+        </td>
+      </ng-container>
+      <!-- Pagination -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of employees"></mat-paginator>
+  </div>
+</section>

@@ -1,0 +1,81 @@
+<app-header />
+
+<section class="container">
+  <div class="card add-form">
+    <div class="card-body">
+      <h5 class="card-title add-title">Add New Employee</h5>
+      <form [formGroup]="addForm" (ngSubmit)="submit()">
+        <!-- Input Username -->
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input type="text" matInput id="username" formControlName="username" placeholder="Enter username">
+        </mat-form-field>
+        <!-- Input First Name -->
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input type="text" matInput id="firstName" formControlName="firstName" placeholder="Enter first name">
+        </mat-form-field>
+        <!-- Input Last Name -->
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input type="text" matInput id="lastName" formControlName="lastName" placeholder="Enter last name">
+        </mat-form-field>
+        <!-- Input Email -->
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input type="email" matInput id="email" formControlName="email" placeholder="Enter email">
+        </mat-form-field>
+        <!-- Choose birthdate -->
+        <mat-form-field>
+          <mat-label>Choose birthdate</mat-label>
+          <input matInput [matDatepicker]="picker" [max]="maxDate" formControlName="birthDate">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <!-- Input Basic Salary -->
+        <mat-form-field>
+          <mat-label>Basic Salary</mat-label>
+          <input type="text" matInput id="basicSalary" formControlName="basicSalary" placeholder="Enter basic salary" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
+        </mat-form-field>
+        <!-- Select Group -->
+        <mat-form-field>
+          <mat-label>Group</mat-label>
+          <mat-select formControlName="group">
+            @for (group of groups; track group) {
+              <mat-option [value]="group.name">{{group.name}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <!-- Select Status -->
+        <mat-form-field>
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status">
+            @for (status of statusList; track status) {
+              <mat-option [value]="status.name">{{status.name}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <!-- Choose join date -->
+        <mat-form-field>
+          <mat-label>Choose join date</mat-label>
+          <input matInput [matDatepicker]="pickerDesc" [max]="maxDate" formControlName="description">
+          <mat-datepicker-toggle matIconSuffix [for]="pickerDesc"></mat-datepicker-toggle>
+          <mat-datepicker #pickerDesc></mat-datepicker>
+        </mat-form-field>
+        <!-- Alert message -->
+        <div class="mb-3" *ngIf="isAlertMessage">
+          <p class="text-danger">{{ alertMessage }}</p>
+        </div>
+        <!-- Button submit -->
+        <div class="row">
+          <div class="col-6 d-grid gap-2">
+            <button type="button" routerLink="/list" class="btn btn-danger">Cancel</button>
+          </div>
+          <div class="col-6 d-grid gap-2">
+            <button type="submit" class="btn btn-primary" [disabled]="!addForm.valid">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

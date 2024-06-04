@@ -1,0 +1,19 @@
+.user-detail {
+    display: block;
+    margin: 20px auto;
+    width: 40%;
+}
+
+@media (max-width: 768px) {
+    .user-detail {
+        width: 90%;
+    }
+}
+
+.user-value {
+    font-weight: 600;
+}
+
+.margin-top-20 {
+    margin-top: 20px;
+}
